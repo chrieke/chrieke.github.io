@@ -1,0 +1,149 @@
+body {
+  overflow-x: hidden;
+}
+
+/* Avoid marker text selection*/
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.header {
+  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  max-width: 1006px;
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #4f4f4f;
+  line-height: 20px;
+  font-size: 18px;
+  margin-left: -40px;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1006px;
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.container img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+.profile {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 100px;
+  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+}
+.profile #avatar {
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-bottom: -8px;
+}
+.profile h1 {
+  font-size: 40px;
+  font-weight: 400;
+  color: #222;
+}
+.profile h2 {
+  font-size: 20px;
+  font-weight: 300;
+  color: #aaa;
+  margin-top: -20px;
+}
+
+.contacts {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 4px;
+  line-height: 1.7;
+  color: #aaa;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.social-row svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+.social-link,
+.social-link:visited,
+.social-link:hover,
+.social-link:active,
+.social-link:focus {
+  text-decoration: none;
+  align-items: center;
+  font-size: 16px;
+  color: #aaa;
+  font-weight: 300;
+}
+
+/*seperator bar */
+hr.rounded {
+  margin: auto;
+  margin-top: 90px;
+  width: 30%;
+  border-top: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.fa {
+  padding: 2px;
+  width: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10%;
+}
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.fa-github {
+  background: #171515;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-medium {
+  background: #000000;
+  color: white;
+}

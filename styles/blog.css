@@ -1,0 +1,97 @@
+/*
+Adapted from Template Name:Mediumish
+Copyright:WowThemes.net,https://www.wowthemes.net
+Version:1.0.1
+License: https://www.wowthemes.net/freebies-license/
+*/
+
+.sort-dropdown {
+  text-align: right;
+}
+
+.sort#sortSelect {
+  margin-top: 2.5%;
+  font-family: "Inter", arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 100%;
+}
+
+.card-columns {
+  column-count: 3;
+  column-gap: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .card-columns {
+    column-count: 1;
+  }
+}
+
+.card-columns .card {
+  display: inline-block;
+  background-color: #f0f0f036;
+  width: 100%;
+  margin-bottom: 1.75rem;
+}
+
+/* styles for individual cards */
+.card {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  width: 100%;
+}
+
+.card:hover {
+  transform: scale(1.03); /* Slightly scales up the card */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Adds a drop shadow */
+  cursor: pointer; /* Changes the cursor to a hand icon */
+}
+
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+img {
+  vertical-align: middle;
+}
+
+.listrecent {
+  margin-top: 2.5%;
+  font-family: "Inter", arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 100%;
+}
+.listrecent h2.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+.listrecent h2.card-title a {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+}
+.listrecent h4.card-text {
+  color: rgba(0, 0, 0, 0.44);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 400;
+  text-decoration: none;
+}
+.listrecent .wrapfooter {
+  font-size: 12px;
+  margin-top: 30px;
+  text-decoration: none;
+}

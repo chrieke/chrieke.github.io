@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="documenting-a-python-package-with-mkdocs-material">Documenting a Python package with mkdocs-material</h1>
+<p>This article shows how to create a  <strong>Python package documentation with code reference via</strong> <a href="https://squidfunk.github.io/mkdocs-material/"><strong>mkdocs-material</strong></a>. This documentation framework is beautiful out of the box, powerful but simple to configure and customise, and it uses Markdown! It offers a great alternative to the popular Sphinx docs.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*bOROfWFG3NZrDJ61sFWbGw.png" alt=""></p>
+<p>Python package docs with code reference, created with mkdocs-material and mkdocstrings</p>
+<p>There are a lot of useful tools and services to document a software project. However, when it comes to documenting a  <strong>Python package with an automated code reference</strong> (extracting the docstrings of classes and functions of your package), the selection is more limited. As packages are frequently updated, creating the code reference manually is not a good option.</p>
+<p>The most commonly used tool for this in the Python community is  <a href="https://www.sphinx-doc.org/en/master/"><strong>Sphinx</strong></a>, often styled with the familiar  <a href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html">readthedocs theme</a>. Sphinx is very mature, offering a ton of  <a href="https://github.com/yoloseem/awesome-sphinxdoc">features and extensions.</a>  However, setup, configuration and writing the docs in the .rst (restructuredText) file format can feel unintuitive and a bit finicky. For a more in-depth break-down of the advantages and tradeoffs using Sphinx see  <a href="https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/">here</a>.</p>
+<h1 id="mkdocs-material">mkdocs material</h1>
+<p>More recently,  <a href="https://squidfunk.github.io/mkdocs-material/"><strong>mkdocs material</strong></a>  has seen a huge surge in popularity as the documentation tool of choice for many projects. The following tweet of Sebastián Ramírez, the developer of FastAPI, sums it up well:</p>
+<p>A few examples of documentations created with mkdocs-material:</p>
+<p><a href="https://squidfunk.github.io/mkdocs-material/"><img src="https://miro.medium.com/v2/resize:fit:7168/1*CFxKwUSEPOXspCkUrQaWJg.png" alt=""></a></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:7168/1*cJ9EWW82mh_-JhSc9Z-jUw.png" alt=""></p>
+<p><a href="https://ludwig-ai.github.io/ludwig-docs/"><img src="https://miro.medium.com/v2/resize:fit:7168/1*fH9NbcbDgniZeTy3ncp_qw.png" alt=""></a></p>
+<p><a href="https://fastapi.tiangolo.com/"><img src="https://miro.medium.com/v2/resize:fit:7168/1*3gpzeX98odjRQ5gx1LY_8w.png" alt=""></a></p>
+<p><a href="https://up42.github.io/up42-py/"><img src="https://miro.medium.com/v2/resize:fit:7168/1*LLnbGqgEC2gGXjX94q8vWA.png" alt=""></a></p>
+<h1 id="code-reference-with-mkdocs">Code reference with mkdocs</h1>
+<p>Setting up your documentation with mkdocs-material is a pretty simple process, just follow the  <a href="https://squidfunk.github.io/mkdocs-material/creating-your-site/"><strong>instructions in the official documentation</strong></a>. Everything is configured in the  <a href="https://github.com/squidfunk/mkdocs-material/blob/master/mkdocs.yml">mkdocs.yml</a>  file in your projects top-folder. Here, I just want to  <strong>focus on adding the code reference of your Python package</strong>  using the  <a href="https://github.com/pawamoy/mkdocstrings"><strong>mkdocstrings plugin</strong></a>.</p>
+<p><strong>IMPORTANT!</strong>  mkdocstrings currently only accepts  <a href="https://pawamoy.github.io/mkdocstrings/handlers/python/#google-style">Google style docstrings</a>!</p>
+<h2 id="setup">Setup</h2>
+<p>First install the  <a href="https://github.com/pawamoy/mkdocstrings"><strong>mkdocstrings</strong></a>  plugin:</p>
+<p>pip install mkdocstrings[python]</p>
+<p>Activate the plugin by adding it to the plugin section in the mkdocs.yml configuration file:</p>
+<h1 id="mkdocs.yml">mkdocs.yml</h1>
+<p>theme:<br>
+name: “material”</p>
+<p>plugins:</p>
+<ul>
+<li>search</li>
+<li>mkdocstrings</li>
+</ul>
+<h2 id="add-the-code-reference">Add the code reference</h2>
+<p>Lets say our fictitious  <em>“my-package”</em>  Python package has the following structure, and we want to add the code reference for the  <em>“workflow”</em>  module.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*VJt5fJ5gla4F6vBC8yL3aQ.png" alt=""></p>
+<p>First, create a new markdown file “workflow-reference” in the docs folder:</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*TjWoKZn2R40QtMXg3rt1dA.png" alt=""></p>
+<p>Add the following text to the markdown file. This will automatically add all classes and functions within the <a href="http://workflow.py">workflow.py</a> module to the code reference:</p>
+<h1 id="workflow-module-my-package.workflow">Workflow module::: my-package.workflow</h1>
+<p>(Optional) You can also  <a href="https://pawamoy.github.io/mkdocstrings/handlers/python/#selection">include or exclude only specific elements</a>:</p>
+<h1 id="workflow-class-my-package.workflow.workflow-my-package.workflow.get_workflows">Workflow class::: my-package.workflow.Workflow::: my-package.workflow.get_workflows</h1>
+<p>Now list the “docs/workflow-reference.md” file as a new chapter in the table of contents in the mkdocs.yml configuration file:</p>
+<p>nav:<br>
+- Home: <a href="http://index.md">index.md</a><br>
+- Installation: <a href="http://installation.md">installation.md</a><br>
+- Code Reference:<br>
+- Workflow: <a href="http://workflow-reference.md">workflow-reference.md</a></p>
+<p>Check the result in your browser with the mkdocs preview function  <em>mkdocs serve</em>.</p>
+<p><a href="https://up42.github.io/up42-py/reference/workflow/"></a></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*bOROfWFG3NZrDJ61sFWbGw.png" alt=""></p>
+<p>mkdocstrings automatically extracts the docstrings (Google style!), displays the parameters &amp; types in a nicely formatted table, is able to pick up admonitions &amp; examples, and can show a foldable button to quickly see the underlying source code of the function.</p>
+<p>For live examples of a code reference check out the official  <a href="https://pawamoy.github.io/mkdocstrings/">mkdocstrings documentation</a>  or the the  <a href="https://sdk.up42.com/reference/up42-reference/">UP42 Python SDK code reference</a>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*L-4Lb03cTYgY4hOSAcqnEg.png" alt=""></p>
+<h2 id="cli-reference">CLI reference</h2>
+<p>If your Python package contains a <strong>CLI (command line interface)</strong> created with <a href="https://github.com/pallets/click">click</a>, you can use <a href="https://github.com/DataDog/mkdocs-click"><strong>mkdocs-click</strong></a> to automate the CLI reference. See here for a <a href="https://sdk.up42.com/reference/cli-reference/">live example</a> and the <a href="https://github.com/up42/up42-py/blob/master/docs/reference/cli-reference.md">underlying code</a>, which is just as simple to use as mkdocstrings.</p>
+</div>
+</body>
+
+</html>

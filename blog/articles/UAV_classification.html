@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="tutorial-uav-landcover-classification-with-fastai--google-colab">Tutorial: UAV landcover classification with fastai &amp; Google Colab</h1>
+<p>This tutorial lets you train a land cover classification model with high-resolution Dronedeploy UAV imagery using fastai and Google Colab. No requirements, in-browser, with a GPU.</p>
+<p><a href="https://www.dronedeploy.com/">Dronedeploy</a>  recently released the  <a href="https://github.com/dronedeploy/dd-ml-segmentation-benchmark">“DroneDeploy Machine Learning Segmentation”</a>  dataset and baseline model. The dataset consists of super crisp 10cm resolution UAV images for 51 areas of interest all over the US, as well as pixel masks for 6 categories (building, clutter, vegetation, water, ground, car). This tutorial takes the excellent Dronedeploy  <a href="https://docs.fast.ai/">fastai</a>  implementation, puts it into  <a href="https://colab.research.google.com/notebooks/welcome.ipynb#recent=true">Google Colab</a>  and gives beginner-friendly step for step instructions to make it even more accessible.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*5Dmsr76Z-KtVJq8HBg6Ywg.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*4FefeM_mryZ92RLR4TCX_A.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*mZjkyXaLz14pVjw-shmIVQ.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*g2K_hVaQUCJWGa8YiWFd2A.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*zyeiccWyaffrLlSWxlx61w.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*mX6aUk5bT2rksMNtttJGGg.png" alt=""></p>
+<p>Colab is Google’s variant of “Jupyter notebook in the cloud”, it offers free GPU access to every user. To train the model open this prepared  <a href="https://colab.research.google.com/drive/1ln43Ls4EAKUNXc7O697D_d1eTpgENK7C"><strong>Google Colab notebook</strong></a>, click  <strong>“Open in playground mode”</strong>  on the top left and follow the instructions below.</p>
+<p><a href="https://colab.research.google.com/drive/1ln43Ls4EAKUNXc7O697D_d1eTpgENK7C"></a></p>
+<h2 id="google-colaboratory-—-landcover_dronedeploy">Google Colaboratory — Landcover_Dronedeploy</h2>
+<p><a href="http://colab.research.google.com">colab.research.google.com</a></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*vlcX58opMw-RdUcqCwS9FA.png" alt=""></p>
+<p><strong>1.</strong>  First  <strong>activate GPU access:</strong>  In the Colab main menu, go to “Runtime”, “Change runtime type” and under “Hardware accelerator” select “GPU”.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*MRvvgf4tFSfeVqeBm5bI3Q.jpeg" alt=""></p>
+<p><strong>2.</strong>  Select the first notebook cell and run it via the “Run Cell” button (or press Shift + Enter). This will  <strong>download the Dronedeploy github repository</strong>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Mp7Hd6emZRNvKMWnyvdEiA.png" alt=""></p>
+<p><strong>3.</strong>  Continue with the next cells to  <strong>change the working directory</strong>  to the downloaded folder and  <strong>install the required Python libraries</strong>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*7xeSsn-MSOGc0VLEy_XgpQ.png" alt=""></p>
+<p><strong>4.</strong>  <strong>This step is optional:</strong>  The Dronedeploy implementation uses  <a href="https://www.wandb.com/"><strong>wandb.com</strong></a> <strong>to track the training progress</strong>. If you want to use it, run the cell and follow the appearing instructions (create an account and copy your APIkey), otherwise just skip this cell and go to step 5.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*OmbmVYWGSF7xDscnTIbaTA.png" alt=""></p>
+<p><a href="https://www.wandb.com/">wandb</a>  is a platform that visualizes and keeps track of all your experiment data in one place. It’s free for individuals. I discovered it through this Dronedeploy repo and am very impressed. wandb integrates with a few lines of code in your deep learning framework of choice and saves the training progress &amp; logs, network &amp; system parameters, uploads the best model etc. You can even submit your run to the Dronedeploy dataset’s  <a href="https://app.wandb.ai/dronedeploy/dronedeploy-aerial-segmentation/benchmark/leaderboard">leaderboard</a>!</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Sy2KvDVwKdUYDsUiyo6vag.png" alt=""></p>
+<p><strong>5.</strong>  Finally,  <strong>prepare the data and train the model</strong> via**:**</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*-BvPYRvy2EnjYJzkCc9ojA.png" alt=""></p>
+<p>This will download the “dataset-sample” (<a href="https://dl.dropboxusercontent.com/s/h8a8kev0rktf4kq/dataset-sample.tar.gz?dl=0">direct download link</a>), a subset containing images for 3 of the 51 areas of interest. The images and labels are cut to image chips of 256x256 pixels. The process then downloads a resnet18 base model and start the training process for  <a href="https://heartbeat.fritz.ai/a-2019-guide-to-semantic-segmentation-ca8242f5a7fc">semantic segmentation</a>  via a  <a href="https://en.wikipedia.org/wiki/U-Net">U-Net</a>  model. After the training is finished, the model accuracy is evaluated on a set of hold-out validation chips. The whole process will take a couple of minutes. The evaluation metrics are printed to the notebook and are discoverable in more detail in  <a href="https://app.wandb.ai/home">wandb</a>. To see the predicted validation images, in Colaboratory, go to “View”, “Table of contents”. In the sidebar, under the “Files” tab go to “content/dd-ml-segmentation-benchmark/predictions”.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2088/1*v9-afKjceNmKg9YHCGO7Ag.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2082/1*dwoGzfmqj9mFsGvsmP0rGw.png" alt=""></p>
+<p>UAV RGB image and Ground Truth labels (left) and Predicted Image (right) (trained on the full dataset with default settings)</p>
+<p>Running the  <strong>training on the full Dronedeploy dataset</strong>  with the default settings takes 3 hours and yields an F1-score of 0.77. The Dronedeploy implementation acts as a baseline model, there are many  <a href="https://github.com/dronedeploy/dd-ml-segmentation-benchmark#possible-improvements"><strong>potential improvements</strong></a><strong>,</strong> e.g.  incorporating elevation data (also included in the dataset!), data augmentation, tuned model hyperparameters etc.<br>
+If you want to train the model with the full dataset, open “content/dd-ml-segmentation-benchmark/main_fastai.py” and uncomment ‘dataset-medium’ on line 11. Then rerun the notebook. Pay attention that you come back to the notebook browser tab from time to time as the Colab kernel shuts down after 90min idle.  <em>Tip:</em>  Google Colab is great for prototyping and sharing your work, but less convenient for larger scale tasks, as one session lasts for max. 12 hours.</p>
+<p>As a final recommendation, take a look at the  <a href="https://github.com/dronedeploy/dd-ml-segmentation-benchmark/blob/master/main_keras.py">scripts in the Dronedeploy repository</a>! The clean code and fastai’s abstractions make it easy to follow the process step for step.  <strong>Further ressources</strong>  I can recommend are  <a href="https://docs.rastervision.io/en/0.10/">rastervision</a>,  <a href="https://solaris.readthedocs.io/en/latest/intro.html#intro">solaris</a>  and  <a href="https://github.com/datapink/robosat.pink">robosat.pink</a>, all three are easy to use Python libraries for geospatial deep learning.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:3968/1*PiZk8ruhqQ-KFyo2qPy_qg.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:4204/1*MvLccx3AlBFsONOgk5sevA.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:3588/1*mZhoQpKTX7i3ZQTCNuCo6g.png" alt=""></p>
+</div>
+</body>
+
+</html>

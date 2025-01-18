@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="jupyter-tips-and-tricks">Jupyter Tips and Tricks</h1>
+<p>Just a couple of JupyterLab &amp; Notebook features that I didn’t know a year ago but am now using a lot.</p>
+<h2 id="cell-execution-history">Cell execution history</h2>
+<p>As long as your Kernel is active, the code of each executed cell is stored in this input history list. Comes in handy when you accidentally deleted a cell etc.</p>
+<blockquote>
+<p>_<em>ih[-5:] # code of the 5 most recently run cells</em></p>
+</blockquote>
+<h2 id="autoreload">Autoreload</h2>
+<p>If you edit the code of an imported module or package,  you usually need to restart the notebook kernel or use reload() on the specific module. That can be quite annoying. With the  <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html"><strong>autoreload</strong></a> magic command, modules are automatically reloaded before any of their code is executed.</p>
+<blockquote>
+<p>_%_<em>loa__d_ext</em> _autoreload<br>
+_<em>%autoreload 2</em></p>
+</blockquote>
+<h2 id="debug-and-the-ipython-debugger"><strong>%debug and the iPython debugger</strong></h2>
+<p>The easiest way to debug a Jupyter notebook is to use the <strong>%debug magic</strong>  command.  Whenever you encounter an error or exception, just open a new notebook cell, type %debug and run the cell.  This will open a command line where you can test your code and inspect all variables right up to the line that threw the error.<br>
+Type  <strong>“n”</strong>  and hit Enter to run the  <strong>next</strong>  <strong>line</strong>  of code (The → arrow shows you the current position). Use  <strong>“c”</strong>  to  <strong>continue</strong> until the next breakpoint.  <strong>“q”</strong>  <strong>quits</strong>  the debugger and code execution.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:932/1*IiFphbhDWjmrUPwgUBgBhw.png" alt=""></p>
+<p>%debug magic command</p>
+<p>Although not quite up to par with the functionality of the debuggers in IDEs like Pycharm or Visual Studio Code,  the <strong>iPython debugger</strong> is another great option. Import it and use set_trace() anywhere in your notebook to create one or multiple breakpoints.  When executing a cell, it will stop at the first breakpoint and open the command line for code inspection. You can also set breakpoints in the code of imported modules, but don’t forget to import the debugger in there as well.</p>
+<blockquote>
+<p><em>from</em> <em>IPython.core.de__bugger</em> <em>import</em> <em>set_trace__set___trace</em>_(__)_</p>
+</blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:1046/1*WXn1k-GZvyiZoqCYGplqEQ.png" alt=""></p>
+<p>iPython debugger in action</p>
+<p>There is also the relatively new  <a href="https://medium.com/ibm-watson-data-lab/the-visual-python-debugger-for-jupyter-notebooks-youve-always-wanted-761713babc62"><strong>“PixieDebugger”</strong></a>  project which wants to offer the “Visual Python Debugger for Jupyter Notebooks You’ve Always Wanted”. I haven’t tested it yet but it sounds very promising!</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*DBtWuHTtvZXtFOrwr80lIA.png" alt=""></p>
+<h2 id="jupyterlab-extensions"><strong>JupyterLab extensions</strong></h2>
+<p>It took a while  but the first few really  useful  JupyterLab extensions have become available.  <a href="https://github.com/jupyterlab/jupyterlab"><strong>JupyterLab</strong></a>  is the “next-generation user interface for Project Jupyter”. I just want to highlight and recommend the  <a href="https://github.com/jupyterlab/jupyterlab-toc"><strong>“Table of contents”</strong></a>  and  <a href="https://github.com/lckr/jupyterlab-variableInspector"><strong>“Variable Viewer”</strong></a>  <a href="http://extensions.To">extensions.To</a> find other extensions you can use the  <a href="https://github.com/topics/jupyterlab-extension"><strong>“jupyterlab-extension”</strong></a>  search hashtag on github. Also take a look at the  <a href="https://github.com/markusschanta/awesome-jupyter"><strong>“awesome-jupyter”</strong></a>  list for even more Jupyter related projects, libraries and resources.</p>
+<p>You can follow me on  <a href="http://chrieke.com/"><strong>chrieke.com</strong></a>  and Twitter  <a href="https://twitter.com/chrieke"><strong>@ chrieke</strong></a></p>
+</div>
+</body>
+
+</html>

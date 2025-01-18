@@ -1,2 +1,3 @@
-# chrieke.github.io
-Personal website
+# chrieke.com
+
+my webpage

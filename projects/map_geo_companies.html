@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christoph Rieke</title>
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/map.css" />
+    <script src="functions.js"></script>
+    <script src="../config.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--Header start-->
+    <header class="header noselect">
+      <div class="header-measure">
+        <!--<a class="header-logo"> Christoph Rieke </a>-->
+        <a class="header-navbar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../blog.html">Writing</a>
+            </li>
+          </ul>
+        </a>
+      </div>
+    </header>
+    <!--end of Header-->
+
+    <!--Map Filters start-->
+    <div class="container" id="filters">
+      <label>
+        <input type="checkbox" value="Earth Observation" checked />
+        Earth Observation
+      </label>
+      <label>
+        <input type="checkbox" value="GIS / Spatial Analysis" checked />
+        GIS / Spatial Analysis
+      </label>
+      <label>
+        <input type="checkbox" value="Digital Farming" checked />
+        Digital Farming
+      </label>
+      <label>
+        <input type="checkbox" value="Webmap / Cartography" checked />
+        Webmap / Cartography
+      </label>
+      <label>
+        <input type="checkbox" value="Satellite Operator" checked />
+        Satellite Operator
+      </label>
+      <label>
+        <input type="checkbox" value="UAV / Aerial" checked />
+        UAV / Aerial
+      </label>
+    </div>
+    <!--end of Map Filters-->
+
+    <!--Mapbox map start-->
+    <div
+      class="container"
+      id="map"
+      style="width: 800px; height: 600px; margin-top: 50px"
+    ></div>
+
+    <script>
+      mapboxgl.accessToken = mapBoxPublicToken;
+
+      // Function to load the data
+      function loadData() {
+        return fetch(
+          "./awesome_geospatial_companies/awesome-geospatial-companies - Companies A-Z.json"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            return data.map((item) => ({
+              type: "Feature",
+              properties: {
+                Company: item.Company, //adjusted names
+                Category: item.Category,
+                Country: item.Country,
+                Office_Size: item.Office,
+                Focus: item.Focus,
+              },
+              geometry: {
+                type: "Point",
+                coordinates: [item.lon, item.lat],
+              },
+            }));
+          });
+      }
+
+      // Function to create a filter expression based on the currently selected categories
+      // custom filter expression due to multiple filters at the same time, requires "any"
+      function getFilterExpression() {
+        var checkboxes = document.querySelectorAll(
+          "#filters input[type=checkbox]"
+        );
+        var categories = [];
+
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            categories.push(checkboxes[i].value);
+          }
+        }
+
+        var filter = ["any"];
+        categories.forEach((category) => {
+          filter.push(["==", ["get", "Category"], category]);
+        });
+
+        console.log("Filter expression: ", filter);
+        return filter;
+      }
+
+      function buildMap(points) {
+        var map = new mapboxgl.Map({
+          container: "map",
+          style: "mapbox://styles/mapbox/streets-v11",
+          center: [-95.665, 37.6],
+          zoom: 3,
+        });
+
+        map.on("load", function () {
+          map.addSource("points", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: points,
+            },
+          });
+
+          // Style points
+          map.addLayer({
+            id: "points",
+            type: "circle",
+            source: "points",
+            paint: {
+              "circle-radius": 10,
+              "circle-color": [
+                "match",
+                ["get", "Category"],
+                "Earth Observation",
+                "#f00",
+                "GIS / Spatial Analysis",
+                "#ff0",
+                "UAV / Aerial",
+                "#00f",
+                "Satellite Operator",
+                "#808080",
+                "Digital Farming",
+                "#008000",
+                "Webmap / Cartography",
+                "#ffa500",
+                "#000",
+              ],
+              "circle-stroke-width": 1,
+              "circle-stroke-color": "#000",
+              "circle-translate": [0, -3],
+              "circle-translate-anchor": "viewport",
+              "circle-opacity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                7,
+                0.75,
+                12,
+                1,
+              ],
+              "circle-blur": 0.2,
+            },
+          });
+
+          // Apply the initial filters to the map
+          map.setFilter("points", getFilterExpression());
+          map.triggerRepaint();
+
+          map.on("click", "points", function (e) {
+            new mapboxgl.Popup()
+              .setLngLat(e.features[0].geometry.coordinates)
+              .setHTML(
+                "Company: " +
+                  e.features[0].properties.Company +
+                  "<br>Original Category: " +
+                  e.features[0].properties.Category
+              )
+              .addTo(map);
+          });
+        });
+
+        // Listen for changes on the checkboxes and repaint
+        var filtersDiv = document.getElementById("filters");
+        filtersDiv.addEventListener("change", function () {
+          // When a checkbox changes, update the filter on the map
+          map.setFilter("points", getFilterExpression());
+          map.triggerRepaint();
+        });
+      }
+
+      loadData()
+        .then(buildMap)
+        .catch((error) => console.error("Error:", error));
+    </script>
+    <!--end of Mapbox map-->
+    <!-- 100% privacy-first analytics -->
+    <script
+      async
+      defer
+      src="https://scripts.simpleanalyticscdn.com/latest.js"
+    ></script>
+    <noscript
+      ><img
+        src="https://queue.simpleanalyticscdn.com/noscript.gif"
+        alt=""
+        referrerpolicy="no-referrer-when-downgrade"
+    /></noscript>
+  </body>
+</html>

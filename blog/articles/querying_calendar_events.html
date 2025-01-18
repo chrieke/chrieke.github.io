@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="querying-calendar-events-via-the-google-calendar-api">Querying calendar events via the Google Calendar API</h1>
+<p>Do you want to pull all meetings &amp; events from  <strong>your or any shared Google calendar</strong>  via the Google calendar API in Python? This blogpost provides step-for-step instructions on how to setup  <strong>authentication</strong>,  <strong>request calendar events</strong>  and handle the  <strong>pagination token</strong>. For the full code, check the  <a href="https://github.com/chrieke/calendar-insights/blob/main/query_google_calendar_api.ipynb">calendar-insights repository</a>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Hxj5GCeOlILo0uxUf4JXfw.jpeg" alt=""></p>
+<h2 id="setup-google-calendar-api"><strong>Setup Google Calendar API</strong></h2>
+<p>First we need to  <strong>activate the</strong> <a href="https://developers.google.com/calendar/api/guides/overview"><strong>Google Calendar API</strong></a> <strong>for a Google cloud project</strong>  of our choice. Use an existing project or create a new one: At the top of the  <a href="https://console.cloud.google.com/">Google Cloud Console dashboard</a>, click on the project selection and “New Project”, enter a name e.g. “calendar-insights” and click “Create”. Then, in the  <a href="https://console.developers.google.com/">Google API dashboard</a>, click  <em>Enable APIs and services</em>. Search for the Google Calendar API and click  <em>Enable</em>.</p>
+<p>Next, to enable API queries from our local computer, we need to create and  <strong>download authentication credentials</strong>  for that project. In the  <a href="https://console.cloud.google.com/apis/credentials">Credentials section</a>  of the API dashboard, click  <em>Create Credentials</em>  and  <em>OAuth Client ID.</em> Select Application type “Desktop app”. Then click “Download JSON” and store the credentials file on your local PC.<br>
+⚠️  <strong><em>If this is the first time you are creating credentials</em></strong> <em>for this project, Google will show you a dialogue to first create an OAuth consent screen. This can seem a bit daunting because there are many configuration options. Just select the “External” user type, enter an app name (e.g. calendar-insights), your email and just leave the rest empty/keep the defaults. When finished, repeat the Create Credentials step.</em></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*2J4whuAqGnI7G9lw0AwAsA@2x.png" alt=""></p>
+<h2 id="basic-query-example-with-the-google-calendar-api">Basic query example with the Google Calendar API</h2>
+<p>Before querying the calendar of multiple people over long time periods, lets start with a basic query example to  <strong>learn about authentication and the query parameters</strong>.</p>
+<p>In the code below, provide the name/filepath to the downloaded OAuth credentials file from above. When running this code, your browser will open with the typical Google login screen and ask you authenticate this app. Login with the Google account of the desired Google calendar.<br>
+<em>Not shown here, but in order to avoid the authentication step in the browser next time we run this application, we can also store the token received from the authentication and reuse it next time. See the</em> <a href="https://github.com/chrieke/calendar-insights/blob/main/query_google_calendar_api.ipynb"><em>calendar-insights github repository</em></a> <em>for the full implementation.</em></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*ovuYCsdIby5xL7uvLX8AgQ@2x.png" alt=""></p>
+<p>Now we can perform a basic query with the Calendar API for one month of our own calendar events and put them in a pandas dataframe. Each calendar event has information about its name, start &amp; end time, attendees etc.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*yU4MBIvEjbITyvQLR5o6cg@2x.png" alt=""></p>
+<h2 id="querying-multiple-calendars-and-results-pagination">Querying multiple calendars and results pagination</h2>
+<p>Except your own calendar, you can only query data from calendars you are subscribed to. You can subscribe to shared calendars either  <strong>manually</strong>  on the  <a href="http://calendar.google.com/">Google calendar page</a>  (See the  <em>+ symbol under “Other calendars”)</em> <strong>or in code via the API</strong>  as shown below.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*5XAaR_Narxoet9GFA8l6OQ@2x.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*ExbQdnXauTdgNBuLNvgfMQ@2x.png" alt=""></p>
+<p>We can now query the email ids of all calendars we are subscribed to and for which we want to query the calendar events.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*d7aeXkiwVf-UTNOBfD1uDw@2x.png" alt=""></p>
+<p>Now the advanced calendar query: We loop through all subscribed calendars via their email ids and query the calendar events for a two 2-year period. The  <strong>maximum amount of events</strong>  we can get in a single  <a href="https://developers.google.com/calendar/api/v3/reference/events/list">“events.list”</a>  API request is 2500. If we want all events for long time periods, we will certainly reach that number and have to use pagination.  <strong>Pagination</strong>  means that the API splits up the huge amount of returned calendar events into suitable chunks. If there are more events, the Google server will send us the first page with 2500 of the results. It also indicates that there is a  <strong>second page</strong>  by including a “nextPageToken” in the request response. We can then perform a second query, with the same query parameters, but adding that  <strong>nextPageToken</strong>. We then receive the second page of 2500 results, again with a pagination token for the next batch until no more additional results are left.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*lJC2aED_T-UsG2AUTMDctw@2x.png" alt=""></p>
+<p><strong>Success!</strong>  The dataframe contains the calendar events of all queried calendars, now you can start with analysing meeting habits or people’s interactions! Head over to the  <a href="https://github.com/chrieke/calendar-insights/blob/main/query_google_calendar_api.ipynb">calendar-insights repository</a>  to check out the full code implementation.</p>
+</div>
+</body>
+
+</html>

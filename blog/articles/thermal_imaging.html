@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="thermal-imaging-with-satellites">Thermal imaging with satellites</h1>
+<p>Recent funding rounds of startups focused on thermal remote sensing made me much more curious about this field. Here is a quick introduction to thermal imaging, applications and thermal satellite startups.</p>
+<h1 id="thermal-imaging">Thermal imaging</h1>
+<p>We have all seen some examples of  <strong>on the ground thermal imaging</strong>, e.g. to inspect building insulation or a spy popping on thermal vision googles in the movies. Usual applications are surveillance, health screening, firefighting efforts, detection of overheating and insulation leaks in infrastructure etc.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*aSLjiM-33ICxKDMEqFwJdQ.png" alt=""></p>
+<p>Thermal images of different objects —  <a href="https://www.phase1vision.com/blog/5-considerations-when-choosing-a-thermal-imaging-camera">Phase1 Machine Vision Blog</a></p>
+<p>Thermal imaging sensors measure the amount of infrared radiation from an object. All objects above -273°C (absolute zero temperature) emit infrared radiation by themselves, and additionally reflect and transmit some radiation that originates from other objects. The warmer an object is, the more thermal radiation it emits. Thus, objects can be distinguished via thermal imaging even at night, without visible light.</p>
+<p>Thermal cameras measure the thermal radiation and can give an interpreted estimate of the emission, reflection &amp; transmission components. These cameras are usually much lower resolution compared to regular optical cameras. This is because, due to the longer wavelength and thus lower energy of the thermal signal, each pixel sensor unit cell on the sensor needs to be a lot bigger to capture the signal accurately.</p>
+<h1 id="thermal-in-earth-observation">Thermal in Earth Observation</h1>
+<p>Applications of thermal imaging in Earth observation are e.g. the monitoring of droughts, wildfire,  <a href="https://scied.ucar.edu/learning-zone/climate-change-impacts/urban-heat-islands">urban heat islands</a>, agriculture, weather and climate. Multiple existing satellites carry sensors with thermal bands, e.g. Landsat, MODIS, Sentinel-3, AVHRR. However, the temporal and spatial resolution is low (100m for Landsat 8) and for none of these missions, thermal imaging is really the focus. Thermal data from sensors strapped to airplanes (and increasingly UAVs) can reach much higher resolution of up to a few meters, but aerial campaigns are expensive and often not scalable for regular monitoring of many varied locations.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*mvrGALrZI8VomK8adaIb1w.png" alt=""></p>
+<p>Comparison RGB composite and thermal infrared — Kilauea Volcano via Landsat 7 (top) — Sacramento, CA via airplane campaign (bottom) —  <a href="https://earth.esa.int/documents/973910/1002056/CK3.pdf/4e5b4e5a-d898-43b8-9e5c-ba7494aa58c8">Kuenzer: Thermal Remote Sensing</a></p>
+<p>The most common product when working with thermal remote sensing data is the  <a href="https://earthobservatory.nasa.gov/global-maps/MOD_LSTD_M"><strong>Land Surface Temperature (LST)</strong></a>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*RRsnryb5iGktanHsfVURaQ.jpeg" alt=""></p>
+<p>Land Surface Temperature in Tokyo from Landsat8, with the indicated location of the 2021 Tokyo Olympic facilities —  <a href="https://earthobservatory.nasa.gov/images/148616/heating-up-in-tokyo">Stevens / NASA Earth Observatory</a></p>
+<p>LST gives the temperature of Earth’s surface from the satellite perspective (can be ground, can be a building roof). It is different from the air temperature that is usually given in weather reports. Algorithms to derive LST from the raw thermal infrared sensor data generally involve conversion to top-of-atmosphere radiance, brightness temperature and incorporating some vegetation cover estimate. Some methods also try to model LST indirectly from non-thermal satellite sensor measurements, e.g.  <a href="https://vandersat.com/data/land-surface-temperature-lst/">VanderSat LST</a>  product which incorporates SAR data.</p>
+<h1 id="thermal-satellite-startups">Thermal satellite startups</h1>
+<p>Recently, multiple interesting thermal satellite startups have received funding rounds. They all have in common that they want to  <strong>build small-sat constellations with thermal imaging sensors and tackle the limitations of existing thermal imaging capabilities</strong>  via satellite. They combine this with analytics services for their domain.</p>
+<ul>
+<li><a href="https://albedo.com/"><strong>Albedo</strong></a>  from Austin, Teaxs (USA) intends to provide thermal imagery with 2m resolution co-collected with 10cm optical imagery. They announced  <a href="https://spacenews.com/albedo-raises-10-million/">$10 mil seed funding in April 2021</a>.</li>
+<li><a href="https://ororatech.com/"><strong>Orora Technologies</strong></a>  from Munich (GER) is focused on wildfire detection &amp; monitoring. Orora recently  <a href="https://industry-update.com/german-startup-raises-wildfire-surveillance-satellite-funding/31996/">raised a $7.1 million Series A round</a>.</li>
+<li><a href="https://www.satellitevu.com/"><strong>Satellite VU</strong></a> from London (UK) wants to monitor the thermal footprint of any building on the planet every 1–2 hours to derive insights about economic activity, energy efficiency and carbon footprint. They <a href="https://www.satellitevu.com/press/satellite-vu-raises-36m-us5m-for-high-resolution-thermal-satellite-insights-to-support-the-green-industrial-revolution">announced a 2021 $5 million seed round</a>.</li>
+<li><a href="https://www.hydrosat.com/"><strong>Hydrosat</strong></a>  from Washington DC (USA) has an initial focus on agriculture. Hydrosat  <a href="https://www.hydrosat.com/blog-2/3tp07ev63nrd8vv4itu0jm365jtk6l">raised a $5 million seed round</a>  in June 2021.</li>
+<li><a href="https://constellr.space/"><strong>Constellr</strong></a>  from Freiburg (GER) intends to provide global daily monitoring of Land Surface Temperature with a spatial resolution better than 50m. Constellr covers the whole range of thermal applications with a special focus on agriculture. They have  <a href="https://techcrunch.com/2021/02/23/spacetech-startup-constellr-that-can-monitor-land-surface-temperatures-raises-e1m-pre-seed-round/">raised a 2021 pre-seed round of $1.2 million</a>.</li>
+</ul>
+</div>
+</body>
+
+</html>

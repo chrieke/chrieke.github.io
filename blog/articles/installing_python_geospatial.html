@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="howto-install-python-for-geospatial-applications">Howto: Install Python for geospatial applications</h1>
+<p>This Howto gives step for step  instructions on setting up a Python 3 environment on Windows with <a href="https://medium.com/@chrieke/essential-geospatial-python-libraries-5d82fcc38731">gdal, rasterio, geopandas and other essential geospatial libraries.</a></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*3iQE-EuNgorBkLcdbWRq_A.png" alt=""></p>
+<h2 id="installing-python-3.7-with-anaconda-for-windows">Installing Python 3.7 with Anaconda for Windows</h2>
+<ul>
+<li>Uninstall any remaining Python Anaconda installations via Start &gt; “Apps &amp; features”.</li>
+<li>Download the Python 3.7 - 64-Bit Graphical Installer  <a href="https://www.anaconda.com/distribution/">from the Anaconda website</a>.</li>
+<li>Install it using the default options, except select “C:\Anaconda3” as the installation path, and check “Add Anaconda to Path”. By default Anaconda Python would be installed to Windows AppData, setting the installation path to a folder on the “C:” drive is just for convenience when configuring paths and environments.</li>
+<li>Open the <strong>environment variables</strong>  (just search in the Windows start menu. If you are not admin by default on your system, use right-click &gt; Open as administrator). In the bottom section under “System variables” check that the “Path” variable includes the following paths. If not, add them by using the “New” button.</li>
+<li><em>C:\Anaconda3</em></li>
+<li><em>C:\Anaconda3\Script__s</em></li>
+</ul>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*w0ja2voDludHK66w2Dsamw.png" alt=""></p>
+<ul>
+<li>Open the command-line via Start &gt; “cmd” and run the following commands. Explanations and potential errors explained below respectively.</li>
+</ul>
+<p>conda update -n base conda</p>
+<p>This will  <strong>update and install the latest conda version</strong>. If you encounter any “SSL verification” related errors using conda commands, the most likely cause is your company’s network. You can either disable the SSL verification via “conda config — set ssl_verify no” and repeat the step above; or talk to your IT department and  <a href="https://stackoverflow.com/questions/33699577/conda-update-failed-ssl-error-ssl-certificate-verify-failed-certificate-ver">provide conda with the file path to a local SSL certificate</a>.</p>
+<p>conda config --add channels conda-forge<br>
+conda update --all</p>
+<p>Here we add/give the highest priority to the “conda-forge” channel and  <strong>update all Python standard library packages</strong>  to the newest version. Conda has various channels from which it can install packages, “conda-forge” is community-managed and regarded as reliable and up-to-date.</p>
+<h2 id="creating-a-virtual-environment">Creating a virtual environment</h2>
+<p>A virtual environment acts as a “container” for your Python installation. If you are just starting out or don’t need to manage multiple projects that could require different dependencies, using virtual environments often seems unnecessary when you could just use the base installation. I personally still recommend to use an environment for another reason: Because you can clone/backup your working environment, you will have a lot less frustration when something breaks your Python installation.</p>
+<p>conda create --name geo_py37 python=3.7</p>
+<p>This  <strong>create a new virtual environment</strong>  called “geo_py37” (pick any name you like). Anytime you want to use that specific environment, you will need to activate it via</p>
+<p>activate geo_py37</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*t2kGKxAhsemRlbovM9qH-Q.png" alt=""></p>
+<h2 id="installing-gdal">Installing GDAL</h2>
+<p>I have seen quite a lot of people getting frustrated by problems stemming from version and dependency issues related to GDAL &amp; rasterio when installing other libraries at the same time. Thus, just to be save, we will start with these two.</p>
+<p>conda install gdal</p>
+<p>GDAL requires a pointer to a specific folder containing projection and transformation information, otherwise you will run into errors when using some functions. In the Windows environments variable menu, under “User variables” in the top section,  create a new “GDAL_DATA” variable pointing to “C:\Anaconda3\envs\geo_py37\Library\share\gdal”.</p>
+<p>conda install rasterio</p>
+<p>You can test the gdal &amp; rasterio installation via:</p>
+<p>activate geo_py37<br>
+python<br>
+import gdal<br>
+import rasterioexit()</p>
+<h2 id="installing-the-rest-of-the-packages">Installing the rest of the packages</h2>
+<p>Install all other packages using one long command:</p>
+<p>activate geo_py37<br>
+conda install numpy pandas geopandas scikit-learn jupyterlab matplotlib seaborn xarray rasterstats tqdm pytest sqlalchemy scikit-image scipy pysal beautifulsoup4 boto3 cython statsmodels future graphviz pylint mlxtend line_profiler nodejs sphinx nbsphinx</p>
+<p>This will, among others, also install the pyproj library as a dependency. Just like with GDAL,  create a new user variable for it: “PROJ_LIB” pointing to “C:\Anaconda3\envs\geo_py37\Library\include\boost\geometry\srs\projections\proj”</p>
+<p>A few other packages are not available via conda, we install them via pip:</p>
+<p>pip install sentinelsat mercantile</p>
+<p>In case pip is blocked by your company network, use this instead:</p>
+<p>pip install sentinelsat mercantile --trusted-host <a href="http://pypi.org">pypi.org</a> --trusted-host <a href="http://files.pythonhosted.org">files.pythonhosted.org</a></p>
+<p>Finished!<br>
+Some other ressources I can recommend:  <a href="http://www.acgeospatial.co.uk/python-geospatial-workflows-prt1-anaconda/"><strong><em>Python for Geospatial work flows Part 1–3</em></strong></a>  as well as  <a href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c"><strong><em>Python environments and how to manage them with Conda</em></strong><em>.</em></a></p>
+</div>
+</body>
+
+</html>

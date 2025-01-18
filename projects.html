@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Christoph Rieke</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/projects.css" />
+    <script src="functions.js"></script>
+  </head>
+  <body>
+    <!--Header start-->
+    <header class="header noselect">
+      <div class="header-measure">
+        <!--<a class="header-logo"> Christoph Rieke </a>-->
+        <a class="header-navbar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Writing</a>
+            </li>
+          </ul>
+        </a>
+      </div>
+    </header>
+    <!--end of Header-->
+
+    <div class="container">
+
+      <section id="wrapper" class="home">
+        <h1 id="awesome-geospatial-companies">Awesome Geospatial Companies</h1>
+
+        <p>
+          <img
+            src="./projects/preview_awesome_geospatial_companies.jpg"
+            alt=""
+          />
+        </p>
+
+        <p>
+          List of 500+ geospatial companies with interactive map, from over 70
+          countries! Categories earth observation, GIS, catography, UAV, Digital
+          Farming etc.
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/awesome-geospatial-companies"
+            target="_blank"
+            rel="noopener noreferrer"
+            >List</a
+          >
+          •
+          <a
+            href="https://www.google.com/maps/d/edit?mid=1SCCvhv3Tn3acV3EeY91dGxCdLuvSPGCH&usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Map</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="pretyymapp">Prettymapp</h1>
+
+        <p><img src="./projects/preview_prettymapp.jpg" alt="" /></p>
+        <p>
+          Webapp and Python package to create beautiful maps from OpenStreetMap
+          data.
+        </p>
+
+        <p>
+          <a
+            href="https://prettymapp.streamlit.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Webapp</a
+          >
+          •
+          <a
+            href="https://github.com/chrieke/prettymapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+          •
+          <a
+            href="https://pypi.org/project/prettymapp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >PyPi</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="geojson-validator">GeoJSON-Validator</h1>
+
+        <p>
+          <img
+            src="./projects/geojsonvalidator_github_preview.jpeg"
+            alt=""
+          />
+        </p>
+
+        <p>
+            Validate GeoJSON and automatically fix invalid geometries. Like geojsonhint, but with geometry checks & fixes!
+            Use the Webapp or as a Python package!
+            1) 🔴 Detects invalid geometries & 🟢 fixes them : Unclosed, wrong winding order etc.
+            2) 🟨 Problematic geometries (for many tools & APIs): Self-intersection, crossing anti-meridian etc.
+            3) Checks 🧬 structure according to GeoJSON specification.
+        </p>
+
+        <p>
+          <a
+            href="https://geojson-validator.streamlit.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Webapp</a
+          >
+          •
+          <a
+            href="https://github.com/chrieke/geojson-validator"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="Geojson-invalid-geometry">geojson-invalid-geometry</h1>
+        <p><img src="./projects/preview_invalid_geometries.png" alt="" /></p>
+        <p>
+          List of GeoJSON invalid geometry issues with example files. Ever
+          encountered an invalid geometry error when dealing with GeoJSON? Even
+          if a GeoJSON conforms to the GeoJSON specification, some tools or APIs
+          might have issues with it. This repo shows the common issues when
+          handling GeoJSON geometries and how to fix them.
+        </p>
+        <p>
+          <a
+            href="https://github.com/chrieke/geojson-invalid-geometry"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="instance_segmentation_sentinel2">
+          Deep Learning for Instance Segmentation of Agricultural Fields
+        </h1>
+
+        <p><img src="./projects/fieldsPlanet.jpg" alt="" /></p>
+        <p>
+          This thesis aims to delineate agricultural field parcels from
+          satellite images via deep learning instance segmentation. A fully
+          convolutional instance segmentation architecture (adapted from Li et
+          al., 2016), was trained on Sentinel-2 image data and corresponding
+          agricultural field polygons from Denmark. In contrast to many other
+          approaches, the model operates on raw RGB images without significant
+          pre- and post-processing.
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/InstanceSegmentation_Sentinel2"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository
+          </a>
+          •
+          <a
+            href="https://github.com/chrieke/InstanceSegmentation_Sentinel2/blob/master/thesis.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Thesis pdf</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="awesome_satellite_imagery_datasets">
+          Awesome Satellite Imagery Datasets
+        </h1>
+
+        <p>
+          <img src="./projects/awesome_satellite_imagery_preview.jpeg" alt="" />
+        </p>
+        <p>
+          List of aerial and satellite imagery datasets with annotations for
+          computer vision and deep learning. Archived.
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/awesome-satellite-imagery-datasets"
+            target="_blank"
+            rel="noopener noreferrer"
+            >List</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="mkdocs-exclude-search">Mkdocs-exclude-search</h1>
+        <p>
+          A mkdocs plugin for excluding selected files or sections from the
+          search index. Mkdocs is a static site generator that's geared towards
+          building project documentation.
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/mkdocs-exclude-search"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+          •
+          <a
+            href="https://pypi.org/project/mkdocs-exclude-search/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >PyPi</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="iceberg-locations-data">Iceberg-Locations-Data</h1>
+        <p>
+          <img src="./projects/preview_iceberg_locations.jpeg" alt="" />
+        </p>
+        <p>
+          Weekly iceberg locations (2014-today) in a single file hosted on AWS
+          S3. Updated on a weekly basis via a scheduled AWS lambda function -
+          from the US National Ice Center (USNIC).
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/iceberg-locations-data"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+        </p>
+      </section>
+
+      <section id="wrapper" class="home">
+        <h1 id="streamlit-keplergl">Streamlit-Keplergl</h1>
+
+        <p><img src="./projects/preview_streamlit_keplergl.png" alt="" /></p>
+        <p>
+          Streamlit component for rendering kepler.gl maps in a streamlit app.
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/chrieke/streamlit-keplergl"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+          •
+          <a
+            href="https://pypi.org/project/streamlit-keplergl/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >PyPi</a
+          >
+        </p>
+      </section>
+    </div>
+    <!-- 100% privacy-first analytics -->
+    <script
+      async
+      defer
+      src="https://scripts.simpleanalyticscdn.com/latest.js"
+    ></script>
+    <noscript
+      ><img
+        src="https://queue.simpleanalyticscdn.com/noscript.gif"
+        alt=""
+        referrerpolicy="no-referrer-when-downgrade"
+    /></noscript>
+  </body>
+</html>

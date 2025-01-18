@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="essential-geospatial-python-libraries">Essential geospatial Python libraries</h1>
+<p>This is a quick overview of essential Python libraries for working with geospatial data. What I think might be valuable for newcomers in this field is some insight on  <strong>how these libraries interact and are connected</strong>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*SZBA4p9UpficQxBPHCgRLQ.png" alt=""></p>
+<h2 id="shapely-and-geopandas">Shapely and Geopandas</h2>
+<p>When dealing with geometry data, there is just no alternative to the functionality of the combined use of shapely and geopandas.<br>
+With  <a href="http://shapely.readthedocs.io/en/stable/manual.html"><strong>shapely</strong></a>, you can create shapely geometry objects (e.g. Point, Polygon, Multipolygon) and manipulate them, e.g. buffer, calculate the area or an intersection etc.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*XrZvMo-RnVI_Ztn7pnTcXA.png" alt=""></p>
+<p>Shapely itself does not provide options to read/write vector file formats (e.g. shapefiles or geojson) or handle projection conversions. This can be handled e.g. with the  <a href="https://toblerity.org/fiona/manual.html">Fiona</a>  library. But there is an even more convenient way:<br>
+<a href="http://geopandas.org/"><strong>Geopandas</strong></a> combines the geometry objects of shapely, the read/write/ projection functions of fiona and the powerful dataframe interface of the <a href="http://pandas.pydata.org/pandas-docs/stable/">pandas</a> library in one awesome package. In the spreadsheet-like dataframe, the last column ‘geometry’ stores the shapely geometry objects, all shapely functions can be applied.  The pandas mechanics offers super easy ways to manipulate, plot and analyze the data, e.g. dataframe groupby operations etc.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*I9k-MZqTSV34PFBwMyKcjA.png" alt=""></p>
+<h2 id="rasterio">Rasterio</h2>
+<p><a href="https://mapbox.github.io/rasterio/intro.html"><strong>Rasterio</strong></a>  is the go-to library for raster data handling. It lets you read/write raster files to/from <a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#the-basics">numpy</a> arrays (the de-facto standard for Python array operations), offers many convenient ways to manipulate these array (e.g. masking, vectorizing etc.) and can handle transformations of coordinate<br>
+reference systems. Just like any other numpy array, the data can also be easily plotted, e.g. using the  <a href="https://matplotlib.org/index.html">matplotlib</a> library.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*I4U6U5My2-8vGLAzCi08hA.png" alt=""></p>
+<h2 id="gdal">GDAL</h2>
+<p>Although I rarely use  <a href="http://www.gdal.org/"><strong>GDAL</strong></a>  functions directly and would recommend beginners to concentrate on rasterio and shapely/geopandas, the  <strong>G</strong>eospatial  <strong>D</strong>ata  <strong>A</strong>bstraction  <strong>L</strong>ibrary needs to be on this list.  Many of the libraries which are described here rely on GDAL, it is the cornerstone for reading, writing and manipulating raster and vector data in many software packages.  However, the GDAL Python bindings (GDAL is originally written in C) are not as intuitive as expected from standard Python. The other libraries on this list use modern Python language features and imho offer more convenience and functionality.</p>
+<p><a href="http://pythonhosted.org/rasterstats/"><strong>rasterstats</strong></a>: For zonal statistics. Extracts statistics from rasters files or numpy arrays based on geometries.</p>
+<p><a href="http://scikit-image.org/"><strong>scikit-image</strong></a>: Library for image manipulation, e.g. histogram adjustments, filter, segmentation/edge  detection  operations, texture feature extraction etc.</p>
+<p><a href="http://scikit-learn.org/stable/"><strong>scikit-learn:</strong></a>  The best and at the same time easy-to-use Python machine learning library. Regression, classification, dimensionality reductions etc.</p>
+<p><a href="http://python-visualization.github.io/folium/docs-v0.5.0/"><strong>folium</strong></a>: Lets you visualize spatial data on interactive leaflet maps.</p>
+<p><a href="https://pypi.python.org/pypi/descartes"><strong>descartes</strong></a>: Enables plotting of shapely geometries as matplotlib paths/ patches. Also a dependency for the geometry plotting functions of geopandas.</p>
+<p><a href="http://jswhit.github.io/pyproj/"><strong>pyproj</strong></a><strong>:</strong> For transformation of projections. Mostly unnecessary when  using the more conveniant geopandas coordinate reference system (crs) functions.</p>
+<p><a href="https://pysal.readthedocs.io/en/latest/"><strong>PySAL:</strong></a>  The Python Spatial Analysis Library contains a multitude of functions for spatial analysis, statistical modeling and plotting.</p>
+<p><a href="https://xarray.pydata.org/en/stable/"><strong>xarray</strong></a>: Great for handling extensive image time series stacks, imagine 5 vegetation indices x 24 dates x 256 pixel x 256 pixel. xarray lets you label the dimensions of the multidimensional numpy array and combines this with many functions and the syntax of the pandas library (e.g. groupby, rolling window, plotting).  Not essential for beginners, but it is a great addition when working with extensive time series data.</p>
+<p>Here you can find step for step  <a href="https://medium.com/@chrieke/howto-install-python-for-geospatial-applications-1dbc82433c05"><strong>instructions on how to install and setup an Anaconda Python 3 environment</strong></a>  for Windows with all of the geospatial libraries described above.</p>
+<p>There have been quite a few recommendations for other geospatial libraries and ressources in the comments, take a look! I also recommend checking out the  <a href="https://github.com/sacridini/Awesome-Geospatial"><strong>“Awesome geospatial”</strong></a>  list.</p>
+</div>
+</body>
+
+</html>

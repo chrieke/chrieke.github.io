@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="air-pollution—using-sentinel-5p-to-monitor-the-atmosphere">Air Pollution—Using Sentinel-5P to Monitor the Atmosphere</h1>
+<h2 id="an-overview-of-sentinel-5p-and-level-2--level-3-processing-explained">An overview of Sentinel-5P and Level-2 &amp; Level-3 processing explained</h2>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*TrtD2FXLoo_kRJqgCM3Vig.jpeg" alt=""></p>
+<p>Air pollution rapidly increases the risk of environmental health problems, affecting society in all parts of the developed and developing worlds.  <a href="https://www.ft.com/content/1ed2c466-0d22-11ea-bb52-34c8d9dc6d84">Recent findings</a>  show if you live within 50 meters of a major road, your risk of lung cancer can increase by up to 10%. It’s also been found that bad air quality impacts the heart, leading to increased risks of coronary heart disease and heart attacks.</p>
+<blockquote>
+<p>Accurately measuring and monitoring air quality is vital to taking steps towards improving the air that we breathe.</p>
+</blockquote>
+<p><a href="https://sentinel.esa.int/web/sentinel/missions/sentinel-5p">The Sentinel-5P satellite mission</a>  enables air quality monitoring on a global scale. This piece shares an overview of Sentinel-5P’s characteristics, data products, the important  <strong>distinction between processing Level-2 &amp; Level-3</strong>, as well as some of the satellite’s applications for air quality monitoring and climate research.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*a34gMAt8DsAoi2obpChRQA.png" alt=""></p>
+<p>Copernicus Sentinel satellites (©<a href="https://www.esa.int/ESA_Multimedia/Images/2014/04/Sentinel_family">ESA</a>  edited)</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*ZU6-Vh9kwslwXpUVNYTmJA.png" alt=""></p>
+<p>Sentinel-5P data products (©<a href="https://dlmultimedia.esa.int/download/public/videos/2017/07/025/orig-1707_025_AR_EN.mp4">ESA</a>  edited)</p>
+<h1 id="sentinel-5p-data-and-characteristics">Sentinel-5P data and characteristics</h1>
+<p>Sentinel-5 Precursor, or Sentinel-5P is the first mission dedicated to monitoring our atmosphere. Operating in a sun-synchronous orbit, the satellite maps a multitude of air pollutants around the globe. After launching in 2017 and subsequent calibration periods, Sentinel-5P reached its routine operations phase in early 2019.</p>
+<p>Since then, the European Space Agency (ESA) has made the final array of Level-2 data products of atmospheric gases available (see image above), offering daily coverage of the entire globe at 7x7 km resolution.</p>
+<p>These products are not measured directly. Instead, the satellite’s 8-band spectrometer instrument, called TROPOMI (TROPOspheric Monitoring Instrument), takes measurements in the ultraviolet, visible, near and short-wavelength infrared light spectrum. In combination with  <a href="https://sentinel.esa.int/documents/247904/2506504/S5P-input-output-data-spec-TROPOMI-L2-data-processor.pdf">auxiliary input data</a>  (e.g. air pressure, snow/ice masks), the concentration of each atmospheric gas is then modeled based on their absorption characteristics at specific wavelengths of the light.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*_v01z5ZS5AnBGpJF" alt=""></p>
+<p>Sentinel-5P orbits are slightly overlapping (©<a href="https://dlmultimedia.esa.int/download/public/videos/2017/07/025/orig-1707_025_AR_EN.mp4">ESA</a>)</p>
+<p>While orbiting the globe at an altitude of ~800 km, Sentinel-5P continuously takes measurements of a 2600 km wide area. Each day, it orbits the Earth 14 times, with each orbit’s coverage slightly overlapping—less at the equator, more so near the poles.</p>
+<p><strong>This enables Sentinel-5P to take one full picture of the entire Earth’s surface per day.</strong></p>
+<p>However, the orbit pattern has some variation. Each day, the satellite orbit shifts a bit further eastward, so two images of the same location for consecutive days also have slightly different ground coverage. After 16 days, the satellite passes over the exact same geographical point on the ground again, restarting the orbit sequence.</p>
+<p>Sentinel-5P data products are delivered by ESA in  <a href="https://en.wikipedia.org/wiki/NetCDF">netcdf</a>  data format, as one long image strip per earth orbit—14 per day. Depending on the data product, they vary in file size between 0.1 to 2 GB, as each product contains a variety of quality bands, ancillary data, and sensor parameters.</p>
+<h1 id="processing-level-2-vs-level-3">Processing: Level 2 vs Level 3</h1>
+<p>ESA delivers the default Level-2 data without a fixed grid  (in contrast to, for example, Sentinel-2 images which use the  <a href="https://en.wikipedia.org/wiki/Military_Grid_Reference_System">Military Grid Reference System</a>).</p>
+<p><strong>The pixels in the Sentinel-5P Level-2 products are defined by latitude and longitude, forming an irregular grid</strong> that makes the combination of multiple images more difficult.  This can be resolved by conversion to  <strong>Processing Level-3</strong>: the data is resampled to a  <strong>regular spatial pixel grid</strong> e.g. using the  <a href="http://irregular%20two-dimensional%20grid/">HARP</a>  software toolkit.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*WUiMoXNtai-9qJW8Je14Qg.png" alt=""></p>
+<p>Sentinel-5P Level-2 ground pixel (blue) vs. Level-3 grid pixel (red) (©<a href="https://rus-copernicus.eu/portal/wp-content/uploads/library/education/training/ATMO01_AirQuality_Monitoring.pdf">RUS Copernicus</a>  edited)</p>
+<p><a href="https://up42.com/"><strong>UP42</strong></a>  has recently made a  <a href="https://marketplace.up42.com/block/a9397cf1-8ea6-4c03-9634-3678438c0508"><strong>processing block available that provides access to Sentinel-5P Level-3 gridded data</strong></a>. The goal is to enable you to start analyzing Sentinel-5P data for a specific time period and area of interest, without worrying about pre-processing or manually aligning images, the data format or the correct application of product quality bands.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*KAEwNrjRJVLm8DE9fKqfuA.png" alt=""></p>
+<h1 id="applications-of-sentinel-5p-data">Applications of Sentinel-5P data</h1>
+<p>Sentinel-5P’s abilities enable us to detect atmospheric gases and air pollutants more accurately and at higher temporal frequency than ever before at a global scale.</p>
+<p>Some examples of the applications and users of Sentinel-5 data are national and commercial weather forecast centers, the  <a href="https://en.wikipedia.org/wiki/Volcanic_Ash_Advisory_Center">Volcanic Ash Advisory Centers</a>, the Copernicus  <a href="https://atmosphere.copernicus.eu/global-forecast-plots">Atmosphere Monitoring Service</a>, and  <a href="http://climate.copernicus.eu/">Climate Change Service</a>.</p>
+<p>Additionally, the public uses Sentinel-5P data to inform and engage society with exciting applications such as monitoring volcanic emissions, wildfires and shipping lanes.</p>
+<p>To learn more about Sentinel-5P and its applications, both the  <a href="http://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P">ESA Sentinel-5P applications blog</a>  and  <a href="https://medium.com/sentinel-hub/measuring-air-pollution-from-space-7492f5dad7bc">“Measuring Air Pollution from Space”</a>  by Sinergise are great resources.</p>
+<h1 id="looking-to-the-future">Looking to the future</h1>
+<p><a href="https://www.who.int/health-topics/air-pollution#tab=tab_2">According to the World Health Organisation (WHO)</a>, more than 90% of the world’s population lives in places where air quality levels exceed WHO limits, especially affecting low- and middle-income countries.</p>
+<p>That importance is also reflected in the ESA Copernicus mission planning, as the Sentinel-5 Precursor will be  <strong>followed by the actual ESA Copernicus Sentinel-5 mission</strong>. It is planned for launch in 2022, featuring a constellation of satellites providing more effective and reliable air quality monitoring.</p>
+</div>
+</body>
+
+</html>
